@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: splunkforwarders
   name: synchronize splunk
   serial: 5
   become_method: sudo
