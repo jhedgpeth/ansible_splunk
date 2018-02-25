@@ -13,6 +13,7 @@
       dest: /var/tmp/splunktest
       owner: root
       group: root
+    delegate_to: localhost
     notify:
         - restart splunk
 
