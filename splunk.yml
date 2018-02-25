@@ -1,7 +1,7 @@
 ---
 - hosts: splunkforwarders
   name: synchronize splunk
-  serial: 5
+  forks: 5
   become_method: sudo
   become_user: root
   become_flags: '-i'
@@ -9,18 +9,27 @@
   tasks:
 
   - name: deploy splunk apps
-    synchronize:
-      mode: push
-      src: /opt/splunk/etc/deployment-apps/
-      #      dest: /opt/splunk/etc/apps/
-      dest: /var/tmp/splunktest/
-      perms: yes
-      owner: yes
-      group: yes
-      ssh_args: "-l root"
-    delegate_to: localhost
+    copy:
+      src: /opt/splunk/etc/deployment-apps
+      dest: /var/tmp/splunktest
+      owner: root
+      group: root
     notify:
         - restart splunk
+
+          #  - name: deploy splunk apps
+          #    synchronize:
+          #      mode: push
+          #      src: /opt/splunk/etc/deployment-apps/
+          #      #      dest: /opt/splunk/etc/apps/
+          #      dest: /var/tmp/splunktest/
+          #      perms: yes
+          #      owner: yes
+          #      group: yes
+          #      ssh_args: "-l root"
+          #    delegate_to: localhost
+          #    notify:
+          #        - restart splunk
 
   handlers:
 
