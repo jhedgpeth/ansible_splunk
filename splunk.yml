@@ -13,7 +13,7 @@
       dest: /var/tmp/splunktest
       owner: root
       group: root
-    delegate_to: localhost
+    delegate_to: voltron
     become: true
     notify:
         - restart splunk
