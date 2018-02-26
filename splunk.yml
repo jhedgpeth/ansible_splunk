@@ -1,6 +1,7 @@
 ---
 - hosts: splunkforwarders
   name: synchronize splunk
+  serial: 1
   become_method: sudo
   become_user: root
   become_flags: '-i'
